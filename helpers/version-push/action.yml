@@ -34,7 +34,8 @@ runs:
     - shell: bash
       run: |
         cat /tmp/hassio-version/${{ inputs.channel }}.json | jq .
-        jq --arg version "${{ inputs.version }}" '.["${{ inputs.key }}"] = $version' /tmp/hassio-version/${{ inputs.channel }}.json
+        echo 'sed -i "s|\"${{ inputs.key }}\": \"${{ steps.version.outputs.version }}\"|\"${{ inputs.key }}\": \"${{ inputs.version }}\"|g" /tmp/hassio-version/${{ inputs.channel }}.json'
+        sed -i "s|\"${{ inputs.key }}\": \"${{ steps.version.outputs.version }}\"|\"${{ inputs.key }}\": \"${{ inputs.version }}\"|g" /tmp/hassio-version/${{ inputs.channel }}.json
 
     - shell: bash
       run: |
