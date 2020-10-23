@@ -39,4 +39,4 @@ runs:
       run: |
         cd /tmp/hassio-version || exit 1
         git commit -am "Bump ${{ inputs.key }} from ${{ steps.version.outputs.version }} to ${{ inputs.version }}"
-
+        git push
