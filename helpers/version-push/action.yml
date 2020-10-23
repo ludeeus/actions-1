@@ -23,7 +23,7 @@ runs:
         fi
 
     - shell: bash
-      run: git clone --depth 1 https://github.com/home-assistant/hassio-version.git /tmp/hassio-version
+      run: git clone --depth 1 https://github.com/ludeeus/hassio-version.git /tmp/hassio-version
 
     - shell: bash
       id: version
