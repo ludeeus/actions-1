@@ -63,7 +63,7 @@ runs:
       id: channel
       run: |
         if [[ "${{ inputs.type }}" == "plugin" ]] || [[ "${{ inputs.type }}" == "supervisor" ]]; then
-          if [[ "${{ steps.version.outputs.stable == "true" }}" ]]; then
+          if [[ "${{ steps.version.outputs.stable }}" == "true" ]]; then
             echo "Stable: ${{ inputs.type }}"
             echo "::set-output name=channel::beta"
           else
