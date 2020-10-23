@@ -33,13 +33,10 @@ runs:
 
     - shell: bash
       run: |
-        cat /tmp/hassio-version/${{ inputs.channel }}.json | jq .
-        echo 'sed -i "s|\"${{ inputs.key }}\": \"${{ steps.version.outputs.version }}\"|\"${{ inputs.key }}\": \"${{ inputs.version }}\"|g" /tmp/hassio-version/${{ inputs.channel }}.json'
         sed -i "s|\"${{ inputs.key }}\": \"${{ steps.version.outputs.version }}\"|\"${{ inputs.key }}\": \"${{ inputs.version }}\"|g" /tmp/hassio-version/${{ inputs.channel }}.json
 
     - shell: bash
       run: |
         cd /tmp/hassio-version || exit 1
-        cat /tmp/hassio-version/${{ inputs.channel }}.json | jq .
         git commit -am "Bump ${{ inputs.key }} from ${{ steps.version.outputs.version }} to ${{ inputs.version }}"
 

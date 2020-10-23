@@ -34,7 +34,6 @@ runs:
         version=$(echo "${{ github.ref }}" | awk -F"/" '{print $NF}' )
 
         if [[ "${version}" == "master" ]] || [[ "${version}" == "main" ]];then
-          git log
           commit_count="$(git rev-list --count --since=yesterday HEAD)"
           calver_date="$(date "+%Y.%m.dev%d")"
           commit_count="$(printf "%02d" ${commit_count})"
@@ -44,7 +43,6 @@ runs:
         fi
 
         if [[ "${{ github.event_name }}" == "release" ]]; then
-          echo "Release: ${{ inputs.type }}"
           stable="true"
         else
           stable="false"
@@ -65,7 +63,6 @@ runs:
       run: |
         if [[ "${{ inputs.type }}" == "plugin" ]] || [[ "${{ inputs.type }}" == "supervisor" ]]; then
           if [[ "${{ steps.version.outputs.stable }}" == "true" ]]; then
-            echo "Stable: ${{ inputs.type }}"
             echo "::set-output name=channel::beta"
           else
             echo "::set-output name=channel::dev"
