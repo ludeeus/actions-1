@@ -39,6 +39,6 @@ runs:
     - shell: bash
       run: |
         cd /tmp/hassio-version || exit 1
-        git commit -am "Bump ${{ inputs.key }} from ${{ steps.version.outputs.version }} to ${{ inputs.version }}"
         cat /tmp/hassio-version/${{ inputs.channel }}.json | jq .
+        git commit -am "Bump ${{ inputs.key }} from ${{ steps.version.outputs.version }} to ${{ inputs.version }}"
 
