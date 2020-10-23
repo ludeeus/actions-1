@@ -34,6 +34,7 @@ runs:
         version=$(echo "${{ github.ref }}" | awk -F"/" '{print $NF}' )
 
         if [[ "${version}" == "master" ]] || [[ "${version}" == "main" ]];then
+          git status
           commit_count="$(git rev-list --count --since=yesterday HEAD)"
           calver_date="$(date "+%Y.%m.dev%d")"
           commit_count="$(printf "%02d" ${commit_count})"
