@@ -34,7 +34,7 @@ runs:
     - shell: bash
       run: |
         cat /tmp/hassio-version/${{ inputs.channel }}.json | jq .
-        jq --arg version "${{ steps.version.outputs.version }}" '.["${{ inputs.key }}"] = $version' /tmp/hassio-version/${{ inputs.channel }}.json
+        jq --arg version "${{ inputs.version }}" '.["${{ inputs.key }}"] = $version' /tmp/hassio-version/${{ inputs.channel }}.json
 
     - shell: bash
       run: |
